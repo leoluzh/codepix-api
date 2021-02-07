@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+
+  app:
+    build: .
+    entrypoint: ./.docker/entrypoint.sh
+    container_name: codepix-bank-api
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
+    depends_on:
+      - db
+
+  db:
+    build: .docker/postgres 
+    restart: always
+    container_name: codepix-bank-api-db
+    tty: true
+    ports:
+      - 5432:5432
+    volumes:
+      - .docker/dbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_BD=codepix-bank-api-db
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: codepix-bank-api-db-web
+    tty: true
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@user.com
+      - PGADMIN_DEFAULT_PASSWORD=123456
+    ports:
+      - 9000:80
+    depends_on:
+      - db
