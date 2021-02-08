@@ -1,0 +1,16 @@
+### define references - hostname
+@hostname = http://localhost:3000/api
+
+### list all bank accounts 
+GET {{hostname}}/bank-account HTTP/1.1
+Content-Type: application/json
+
+### get bank account info - bank bbx
+@account_uuid = 6e4635ce-88d1-4e58-9597-d13fc446ee47
+GET {{hostname}}/bank-account/{{account_uuid}} HTTP/1.1
+Content-Type: application/json
+
+### get bank account info - bank cetr
+@account_uuid = 103cc632-78e7-4476-ab63-d5ad3a562d26
+GET {{hostname}}/bank-account/{{account_uuid}} HTTP/1.1
+Content-Type: application/json

@@ -24,7 +24,7 @@ services:
       - .docker/dbdata:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=root
-      - POSTGRES_BD=codepix-bank-api-db
+      - POSTGRES_DB=codepix_bank_api_db
 
   pgadmin:
     image: dpage/pgadmin4
